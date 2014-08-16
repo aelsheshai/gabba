@@ -25,7 +25,7 @@ module Gabba
       # Called before actually sending the data along to GA in Gabba#event
       def event_params(category, action, label = nil, value = nil, utmni = false, utmhid = false)
         raise ArgumentError.new("utmni must be a boolean") if (utmni.class != TrueClass && utmni.class != FalseClass)
-        raise ArgumentError.new("value must be integer > 0 or nil") if (value.present? && value.to_i == 0)
+        raise ArgumentError.new("value must be integer > 0 or nil") if ( value.to_i == 0 ) # value >1 required.
         {
 
           # unless @v.present? # Conditional setting of variables
@@ -53,7 +53,7 @@ module Gabba
           :ea => action,
           :el => label,
           :ev => value,
-          :an => @an,
+          :an => @an, # MUST be included in parameters but does NOT have to be defined.
           :aid => @aid,
           :av => @av,
           :aiid => @aiid
