@@ -14,6 +14,9 @@ Heavily influenced by the [serversidegoogleanalytics][] project.
 Gabba::Gabba.new("UT-1234", "mydomain.com").page_view("something", "track/me")
 ```
 
+### IMPROVEMENTS:
+Request goes out as http not https. Not sure why.
+
 ### Track custom events
 
 ```ruby
