@@ -35,9 +35,9 @@ module Gabba
           :utmip => @utmip,
           :utme => self.custom_var_data,
           :an => @an,
-          :aid = @aid,
-          :av = @av,
-          :aiid = @aiid
+          :aid => @aid,
+          :av => @av,
+          :aiid => @aiid
         }
 
         # Add custom vars if present
