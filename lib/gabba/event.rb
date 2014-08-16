@@ -26,20 +26,33 @@ module Gabba
       def event_params(category, action, label = nil, value = nil, utmni = false, utmhid = false)
         raise ArgumentError.new("utmni must be a boolean") if (utmni.class != TrueClass && utmni.class != FalseClass)
         {
-          :utmwv => @utmwv,
-          :utmn => @utmn,
-          :utmhn => @utmhn,
-          :utmni => (1 if utmni), # 1 for non interactive event, excluded from bounce calcs
-          :utmt => 'event',
-          :utme => "#{event_data(category, action, label, value)}#{custom_var_data}",
-          :utmcs => @utmcs,
-          :utmul => @utmul,
-          :utmhid => utmhid,
-          :utmac => @utmac,
-          :utmcc => @utmcc || cookie_params,
-          :utmr => @utmr,
-          :utmip => @utmip,
-          :utme => self.custom_var_data,
+
+          # unless @v.present? # Conditional setting of variables
+          # :utmwv => @utmwv,
+          # :utmn => @utmn,
+          # :utmhn => @utmhn,
+          # :utmni => (1 if utmni), # 1 for non interactive event, excluded from bounce calcs
+          # :utmt => 'event',
+          # :utme => "#{event_data(category, action, label, value)}#{custom_var_data}",
+          # :utmcs => @utmcs,
+          # :utmul => @utmul,
+          # :utmhid => utmhid,
+          # :utmac => @utmac,
+          # :utmcc => @utmcc || cookie_params,
+          # :utmr => @utmr,
+          # :utmip => @utmip,
+          # :utme => self.custom_var_data,
+          # end
+
+          :v => @v
+          :tid => @tid
+          :cid => @cid
+          :t => 'event'
+
+          :ec => category
+          :ea => action
+          :el => label
+          :ev => value
           :an => @an,
           :aid => @aid,
           :av => @av,

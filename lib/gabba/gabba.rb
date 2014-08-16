@@ -18,9 +18,12 @@ module Gabba
   class NoGoogleAnalyticsDomainError < RuntimeError; end
   class GoogleAnalyticsNetworkError < RuntimeError; end
 
+  #https://developers.google.com/analytics/devguides/collection/protocol/v1/reference
   class Gabba
-    GOOGLE_HOST = "www.google-analytics.com"
-    BEACON_PATH = "/__utm.gif"
+
+    PROTOCOL = 'https'
+    GOOGLE_HOST = "ssl.google-analytics.com"
+    BEACON_PATH = "/collect"
     USER_AGENT = "Gabba #{VERSION} Agent"
 
     # Custom var levels
@@ -36,7 +39,8 @@ module Gabba
 
     ESCAPES = %w{ ' ! * ) }
 
-    attr_accessor :utmwv, :utmn, :utmhn, :utmcs, :utmul, :utmdt, :utmp, :utmac, :utmt, :utmcc, :user_agent, :utma, :utmz, :utmr, :utmip, :an, :aid, :av, :aiid
+    attr_accessor :utmwv, :utmn, :utmhn, :utmcs, :utmul, :utmdt, :utmp, :utmac, :utmt, :utmcc, :user_agent, :utma, :utmz, :utmr, :utmip,
+      :an, :aid, :av, :aiid, :ec, :ea, :el, :ev, :v, :tid, :cid, :t
 
     # Public: Initialize Gabba Google Analytics Tracking Object.
     #
@@ -49,15 +53,21 @@ module Gabba
     #
     #   g = Gabba::Gabba.new("UT-1234", "mydomain.com")
     #
-    def initialize(ga_acct, domain, agent = Gabba::USER_AGENT)
+    # REF => https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#events
+    #
+    def initialize(ga_acct, domain, agent = Gabba::USER_AGENT, client_id)
       @utmwv = "4.4sh" # GA version
       @utmcs = "UTF-8" # charset
       @utmul = "en-us" # language
+      @v = 1  #Current Protocol Version 08-16-2014
 
       @utmn = random_id
       @utmhid = random_id
+      @cid = client_id
 
-      @utmac = ga_acct
+      @utmac = ga_acct #OLD
+      @tid = ga_acct #NEW
+
       @utmhn = domain
       @user_agent =  (agent && agent.length > 0) ? agent : Gabba::USER_AGENT
 
@@ -144,7 +154,7 @@ module Gabba
       request = Net::HTTP::Get.new("#{BEACON_PATH}?#{query}")
       request["User-Agent"] = URI.escape(user_agent)
       request["Accept"] = "*/*"
-      uri = URI "http://#{GOOGLE_HOST}/#{BEACON_PATH}"
+      uri = URI "#{PROTOCOL}://#{GOOGLE_HOST}/#{BEACON_PATH}"
       response = @http.request(uri, request)
 
       raise GoogleAnalyticsNetworkError unless response.code == "200"
