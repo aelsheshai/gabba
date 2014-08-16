@@ -21,9 +21,18 @@ module Gabba
   #https://developers.google.com/analytics/devguides/collection/protocol/v1/reference
   class Gabba
 
-    PROTOCOL = 'https'
-    GOOGLE_HOST = "ssl.google-analytics.com"
+    # New
+    # PROTOCOL = 'https'
+    # GOOGLE_HOST = "ssl.google-analytics.com"
     BEACON_PATH = "/collect"
+
+    # Old
+    PROTOCOL = 'http'
+    GOOGLE_HOST = "www.google-analytics.com"
+    BEACON_PATH = "/__utm.gif"
+
+
+
     USER_AGENT = "Gabba #{VERSION} Agent"
 
     # Custom var levels
@@ -39,8 +48,7 @@ module Gabba
 
     ESCAPES = %w{ ' ! * ) }
 
-    attr_accessor :utmwv, :utmn, :utmhn, :utmcs, :utmul, :utmdt, :utmp, :utmac, :utmt, :utmcc, :user_agent, :utma, :utmz, :utmr, :utmip,
-      :an, :aid, :av, :aiid, :ec, :ea, :el, :ev, :v, :tid, :cid, :t
+    attr_accessor :utmwv, :utmn, :utmhn, :utmcs, :utmul, :utmdt, :utmp, :utmac, :utmt, :utmcc, :user_agent, :utma, :utmz, :utmr, :utmip, :an, :aid, :av, :aiid, :ec, :ea, :el, :ev, :v, :tid, :cid, :t
 
     # Public: Initialize Gabba Google Analytics Tracking Object.
     #
@@ -55,7 +63,7 @@ module Gabba
     #
     # REF => https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#events
     #
-    def initialize(ga_acct, domain, agent = Gabba::USER_AGENT, client_id)
+    def initialize(ga_acct, domain, agent = Gabba::USER_AGENT, client_id = nil)
       @utmwv = "4.4sh" # GA version
       @utmcs = "UTF-8" # charset
       @utmul = "en-us" # language
