@@ -16,7 +16,7 @@ module Gabba
       #   g = Gabba::Gabba.new("UT-1234", "mydomain.com")
       #   g.event("Videos", "Play", "ID", "123", true)
       #
-      def event(category, action, label = nil, value = nil, utmni = false, utmhid = random_id)
+      def event(category, action, label = nil, value = 1, utmni = false, utmhid = random_id)
         check_account_params
         hey(event_params(category, action, label, value, utmni, utmhid))
       end
