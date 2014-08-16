@@ -71,6 +71,8 @@ module Gabba
       @utmhid = random_id
       @cid = client_id
 
+      raise ArgumentError.new("client_id required") unless client_id.present?
+
       @utmac = ga_acct #OLD
       @tid = ga_acct #NEW
 
