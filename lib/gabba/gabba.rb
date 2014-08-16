@@ -37,6 +37,7 @@ module Gabba
     ESCAPES = %w{ ' ! * ) }
 
     attr_accessor :utmwv, :utmn, :utmhn, :utmcs, :utmul, :utmdt, :utmp, :utmac, :utmt, :utmcc, :user_agent, :utma, :utmz, :utmr, :utmip
+      ,:an,:aid,:av,:aiid # Application Tracking Params
 
     # Public: Initialize Gabba Google Analytics Tracking Object.
     #
@@ -62,6 +63,20 @@ module Gabba
       @user_agent =  (agent && agent.length > 0) ? agent : Gabba::USER_AGENT
 
       @custom_vars = []
+    end
+
+    # Public:Initialize Gabba Google Analytics Tracking Object Application Tracking Info
+    #
+    # Set the Application Track vailables
+    #
+    # Note: Even though google docs says these parameters are optional, the application name is required.
+    # https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#an
+    #
+    def set_application_tracking_parameters(name, id, version, installer_id)
+      @an = name
+      @aid = id
+      @av = version
+      @aiid = installer_id
     end
 
     # Public: provide the user's __utma and __utmz attributes from analytics cookie, allowing

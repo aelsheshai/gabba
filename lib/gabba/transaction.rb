@@ -50,7 +50,11 @@ module Gabba
           :utmtco => country,
           :utmr => @utmr,
           :utmip => @utmip,
-          :utme => self.custom_var_data 
+          :utme => self.custom_var_data,
+          :an => @an,
+          :aid = @aid,
+          :av = @av,
+          :aiid = @aiid
         }
       end
     end
