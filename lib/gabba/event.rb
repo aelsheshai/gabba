@@ -44,18 +44,18 @@ module Gabba
           # :utme => self.custom_var_data
           # end
 
-          # :v => @v,
-          # :tid => @tid,
-          # :cid => @cid,
-          # :t => 'event',
-          # :ec => category,
-          # :ea => action,
-          # :el => label,
-          # :ev => value,
-          # :an => @an,
-          # :aid => @aid,
-          # :av => @av,
-          # :aiid => @aiid
+          :v => @v,
+          :tid => @tid,
+          :cid => @cid,
+          :t => 'event',
+          :ec => category,
+          :ea => action,
+          :el => label,
+          :ev => value,
+          :an => @an,
+          :aid => @aid,
+          :av => @av,
+          :aiid => @aiid
         }
       end
 

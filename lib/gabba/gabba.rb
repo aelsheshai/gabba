@@ -22,16 +22,14 @@ module Gabba
   class Gabba
 
     # New
-    # PROTOCOL = 'https'
-    # GOOGLE_HOST = "ssl.google-analytics.com"
+    PROTOCOL = 'https'
+    GOOGLE_HOST = "ssl.google-analytics.com"
     BEACON_PATH = "/collect"
 
-    # Old
-    PROTOCOL = 'http'
-    GOOGLE_HOST = "www.google-analytics.com"
-    BEACON_PATH = "/__utm.gif"
-
-
+    # # Old
+    # PROTOCOL = 'http'
+    # GOOGLE_HOST = "www.google-analytics.com"
+    # BEACON_PATH = "/__utm.gif"
 
     USER_AGENT = "Gabba #{VERSION} Agent"
 
