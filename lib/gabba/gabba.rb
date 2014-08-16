@@ -36,8 +36,7 @@ module Gabba
 
     ESCAPES = %w{ ' ! * ) }
 
-    attr_accessor :utmwv, :utmn, :utmhn, :utmcs, :utmul, :utmdt, :utmp, :utmac, :utmt, :utmcc, :user_agent, :utma, :utmz, :utmr, :utmip
-      ,:an,:aid,:av,:aiid # Application Tracking Params
+    attr_accessor :utmwv, :utmn, :utmhn, :utmcs, :utmul, :utmdt, :utmp, :utmac, :utmt, :utmcc, :user_agent, :utma, :utmz, :utmr, :utmip, :an, :aid, :av, :aiid
 
     # Public: Initialize Gabba Google Analytics Tracking Object.
     #
